@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RXJS的基本属性</title>
+</head>
+
+<body>
+    <button id="btn1">Click Me1</button>
+    <button id="btn2">Click Me2</button>
+    <button id="btn3">Click Me3-每秒点击一次</button>
+    <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+
+    <script>
+
+        var button1 = document.getElementById("btn1");
+        var button2 = document.getElementById("btn2");
+        Rx.Observable.fromEvent(button1, 'click')
+            .subscribe(() => console.log('Clicked!'));
+
+        //1,纯净性：使得 RxJS 强大的正是它使用纯函数来产生值的能力
+        Rx.Observable.fromEvent(button2, 'click')
+            .scan(count => count + 1, 0)
+            .subscribe(count => console.log(`Clicked ${count} times`));
+        //scan 操作符的工作原理与数组的 reduce 类似。它需要一个暴露给回调函数当参数的初始值。每次回调函数运行后的返回值会作为下次回调函数运行时的参数。
+
+
+        //2,流动性 ；RxJS 提供了一整套操作符来帮助你控制事件如何流经 observables 。
+
+
+        //代码展示的是如何控制一秒钟内最多点击一次
+        var button =document.getElementById("btn3");
+        Rx.Observable.fromEvent(button, 'click')
+            .throttleTime(1000)
+            .scan(count => count + 1, 0)
+            .subscribe(count => console.log(`Clicked ${count} times`));
+
+    </script>
+</body>
+
+</html>
