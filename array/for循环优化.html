@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环优化</title>
+</head>
+
+<body>
+    <script>
+
+        var arr = [1, 2, 3, 4, 5, 6];
+        //1，常用的操作
+        // for (let i = 0; i < arr.length; i++) {
+        //     const element = arr[i];
+        //     //console.log(element);
+        // }
+
+        // //2，避免每次去查询的变量
+
+        // for (let arr = 0, j = arr.length; arr < j; arr++) {
+        //     const element = array[arr];
+        //     //console.log(element);
+        // }
+
+        // //3，优化
+
+        // var x = 0, y = arr.length;
+
+        // for (x; x < y; x++) {
+        //     const element = arr[x];
+        //     //console.log(element);
+        // }
+
+        // //3,单一条件
+        // var flag = 0;
+
+        // while (flag < arr.length) {
+        //     //console.log(arr[flag++]);
+        // }
+
+        // //4,单一条件优化
+        // var flag = 0;
+        // var k = arr.length;
+        // while (flag < k) {
+        //     // console.log(arr[flag++]);
+        //     return;
+        // }
+
+
+        // continue,break;
+
+        //跳出循环
+        // for (let i = 0; i < arr.length; i++) {
+        //     const element = arr[i];
+        //     if (element == 4) {
+        //         break;
+        //     }
+        //     console.log(element);
+        // }
+
+
+        //进行下次循环
+        // for (let i = 0; i < arr.length; i++) {
+        //     const element = arr[i];
+        //     if (element == 4) {
+        //         continue;
+        //     }
+        //     //console.log(element);
+        // }
+
+
+        // 使用label的来跳出循环
+
+        loop: for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == 3) {
+                break loop;
+            }
+            console.log(arr[i]);
+        }
+    </script>
+
+</body>
+
+</html>

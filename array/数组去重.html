@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组操作</title>
+</head>
+
+<body>
+    <script>
+
+        //数组去重
+        function unique(arr) {
+            if (Array.hasOwnProperty("form")) {
+                return Array.from(new Set(arr))
+            } else {
+                var r = [], NaNBol = true
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i] !== arr[i]) {
+                        if (NaNBol && r.indexOf(arr[i]) === -1) {
+                            r.push(arr[i])
+                            NaNBol = false
+                        }
+                    } else {
+                        if (r.indexOf(arr[i]) === -1) r.push(arr[i])
+                    }
+                }
+                return r
+            }
+        }
+    </script>
+</body>
+
+</html>

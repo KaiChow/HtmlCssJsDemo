@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 遍历的区别</title>
+</head>
+
+<body>
+    <script>
+        // for  for in   for of   forEach  map
+
+        //1,forEach的遍历
+
+        /**
+        forEach不可以遍历对象，这也是它和for in的一个区别
+        */
+        let arr = [9, 8, 7, 6, 5, 4]
+        const arr1 = arr.forEach(function (item, index, arr) {
+            //console.log(value);
+            return item + 3;
+        })
+
+        // console.log(arr1)
+
+        // 2,map:类似forEach,且会返回一个新数组,forEach不会生成新数组
+
+        const arr2 = arr.map(function (item, index, arr) {
+            return item + 3;
+        })
+
+        // console.log(arr1);
+
+        //3  for  in  遍历数组
+
+        /**
+        for in:（它大部分用于遍历对象）
+
+            定义：用于循环遍历数组或对象属性，fot in循环里面的index是string类型的，代码每执行一次，就会对数组的元素或者对象的属性进行一次操作
+
+            缺点：某些情况下，会出现随机顺序的遍历，因为里面的值是string类型，所以增加了转换过程，因此开销较大
+
+            优点：可以遍历数组的键名，遍历对象简洁方便
+        */
+
+        var obj1 = {
+            name: "kevin",
+            age: 20,
+            mark: 100
+        }
+
+        for (const key in obj1) {
+            if (obj1.hasOwnProperty(key)) {
+                const element = obj1[key];
+                // console.log(element)
+            }
+        }
+
+        //4, for of:for of 遍历列表值,允许遍历 Arrays（数组）, Strings（字符串）, Maps（映射）, Sets（集合）等可迭代的数据结构等.在 ES6 中引入的 for of 循环，以替代 for in 和 forEach() ，并支持新的迭代协议。
+        /**
+        优点：避免了for in的所有缺点，可以使用break,continue和return，不仅支持数组的遍历，还可以遍历类似数组的对象，支持字符串的遍历最简洁，最直接的遍历数组的语法 支持map和Set对象遍历
+
+        缺点：不适用于处理原有的原生对象（原生对象是一个子集，包含一些在运动过程中动态创建的对象）
+        */
+
+        /**
+        map():返回一个新的Array，每个元素为调用func的结果
+        filter():返回一个符合func条件的元素数组
+        some():返回一个boolean，判断是否有元素是否符合func条件
+        every():返回一个boolean，判断每个元素是否符合func条件
+        forEach():没有返回值，只是针对每个元素调用func
+        */
+
+        let a = 1
+        let obj = { '1': 1 }
+        let oldArr = ['1', 1, obj, true, a]
+        oldArr.forEach((el, index) => {
+            // if(typeof el == 'object'){
+            //   el['2']=2
+            // }
+            el = 2;
+        })
+        console.log(oldArr)
+
+
+        for (const iterator of arr) {
+            console.log(iterator)
+        }
+    </script>
+</body>
+
+</html>
